@@ -8,9 +8,11 @@ const AnonLog: () => void = () => {
 }
 
 
-const Aws = (imageData: ArrayBuffer | string): any => {
+const Aws = (imageData: ArrayBuffer | string, setFaceDetails: React.Dispatch<any>) => {
+    let result: any;
     
     AnonLog();
+    console.log("Appel...")
 
     let rekognition: AWS.Rekognition = new AWS.Rekognition();
     let params = {
@@ -22,7 +24,7 @@ const Aws = (imageData: ArrayBuffer | string): any => {
         if(err){
             console.log(err)
         } else {
-            return res.FaceDetails
+            setFaceDetails(res.FaceDetails)
         }
     })
 };
